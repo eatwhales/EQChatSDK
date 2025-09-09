@@ -23,12 +23,12 @@ Pod::Spec.new do |spec|
                       DESC
 
   # 项目信息
-  spec.homepage     = "https://github.com/eatwhales/EQChatSDK.git"
+  spec.homepage     = "https://github.com/yourusername/EQChatSDK"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.author       = { "Your Name" => "your.email@example.com" }
   
   # 源码信息
-  spec.source       = { :git => "https://github.com/eatwhales/EQChatSDK.git.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/yourusername/EQChatSDK.git", :tag => "#{spec.version}" }
   spec.source_files = "Sources/EQChatSDK/**/*.swift"
   
   # 平台支持

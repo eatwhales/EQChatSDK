@@ -1,8 +1,3 @@
-//
-//  ChatView+SwipeActions.swift
-//  Chat
-//
-
 import SwiftUI
 
 public extension ChatView {

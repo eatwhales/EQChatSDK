@@ -1,13 +1,3 @@
-//
-//  InputView.swift
-//  Chat
-//
-//  Created by Alex.M on 25.05.2022.
-//  Modified by Alex.M on 09.09.2025.
-//
-//  输入视图 - 提供文本输入、附件选择、发送和编辑功能
-//
-
 import SwiftUI
 
 /// 输入视图样式枚举

@@ -1,10 +1,3 @@
-//
-//  EmojiTextField.swift
-//  Chat
-//
-//  https://stackoverflow.com/questions/66397828/emoji-keyboard-swiftui
-//
-
 import SwiftUI
 
 class UIEmojiTextField: UITextField {

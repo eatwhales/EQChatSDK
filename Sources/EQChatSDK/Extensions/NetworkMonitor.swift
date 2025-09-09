@@ -1,12 +1,3 @@
-//
-//  NetworkMonitor.swift
-//  
-//
-//  Created by Alisa Mylnikova on 01.09.2023.
-//
-//  网络监控器 - 监控网络连接状态的工具类
-//
-
 import Foundation
 import Network
 

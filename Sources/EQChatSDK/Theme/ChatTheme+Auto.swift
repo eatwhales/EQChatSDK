@@ -1,10 +1,3 @@
-//
-//  ChatTheme+Auto.swift
-//
-//
-//  Created by btoms20 on 22.01.2025.
-//
-
 import SwiftUI
 
 // MARK: Accent Color Theme, with default backgrounds

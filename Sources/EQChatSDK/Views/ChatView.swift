@@ -1,13 +1,3 @@
-//
-//  ChatView.swift
-//  Chat
-//
-//  Created by Alisa Mylnikova on 20.04.2022.
-//  Modified by Alex.M on 09.09.2025.
-//
-//  聊天视图 - 主要的聊天界面组件，提供消息展示、输入框、自定义构建器等功能
-//
-
 import SwiftUI
 
 /// 媒体选择器参数配置

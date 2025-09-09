@@ -1,7 +1,3 @@
-//
-//  Attachment.swift
-//
-
 import Foundation
 
 public struct Attachment: Codable, Identifiable, Hashable, Sendable {

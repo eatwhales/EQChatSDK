@@ -1,19 +1,3 @@
-//
-//  ReactionDelegate.swift
-//  Chat
-//
-
-/// A delegate for responding to Message Reactions and optionally configuring the Reaction Menu
-///
-/// ```swift
-/// func didReact(to message: Message, reaction: DraftReaction)
-///
-/// // Optional configuration methods
-/// func shouldShowOverview(for message: Message) -> Bool
-/// func canReact(to message: Message) -> Bool
-/// func reactions(for message: Message) -> [ReactionType]?
-/// func allowEmojiSearch(for message: Message) -> Bool
-/// ```
 public protocol ReactionDelegate {
     
     /// Called when the sender reacts to a message

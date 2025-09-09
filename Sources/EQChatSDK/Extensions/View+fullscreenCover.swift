@@ -1,12 +1,3 @@
-//
-//  View+fullscreenCover.swift
-//  
-//
-//  Created by Alisa Mylnikova on 20.03.2023.
-//
-//  全屏覆盖扩展 - 提供透明无动画的全屏覆盖功能
-//
-
 import SwiftUI
 
 /// 视图扩展 - 添加透明无动画全屏覆盖功能

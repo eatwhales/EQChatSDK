@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//  
-//
-//  Created by Alisa Mylnikova on 31.03.2023.
-//
-
 import SwiftUI
 
 extension UIApplication {

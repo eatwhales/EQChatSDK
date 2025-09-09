@@ -1,8 +1,3 @@
-//
-//  DynamicTypeSize+BubbleDiameter.swift
-//  Chat
-//
-
 import SwiftUI
 
 extension DynamicTypeSize {

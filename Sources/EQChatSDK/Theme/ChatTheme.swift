@@ -1,13 +1,3 @@
-//
-//  ChatTheme.swift
-//  Chat
-//
-//  Created by Alisa Mylnikova on 31.01.2023.
-//  Modified by Alex.M on 09.09.2025.
-//
-//  聊天主题 - 定义聊天界面的颜色、图片和样式配置
-//
-
 import SwiftUI
 
 public extension EnvironmentValues {

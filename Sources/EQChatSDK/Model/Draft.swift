@@ -1,11 +1,3 @@
-//
-//  Draft.swift
-//  Chat
-//
-//  Created by Alex.M on 17.06.2022.
-//  草稿消息模型 - 定义待发送消息的数据结构
-//
-
 import Foundation
 
 /// 草稿消息结构体 - 表示用户正在编辑或准备发送的消息

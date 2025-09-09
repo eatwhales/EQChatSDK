@@ -1,10 +1,3 @@
-//
-//  UIList.swift
-//  
-//
-//  Created by Alisa Mylnikova on 24.02.2023.
-//
-
 import SwiftUI
 
 public extension Notification.Name {

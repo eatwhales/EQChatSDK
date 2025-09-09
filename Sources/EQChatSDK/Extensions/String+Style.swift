@@ -1,10 +1,3 @@
-//
-//  String+Style.swift
-//  Chat
-//
-//  Created by Matthew Fennell on 01/03/2025.
-//
-
 import Foundation
 
 @MainActor

@@ -1,12 +1,3 @@
-//
-//  Bundle+.swift
-//  
-//
-//  Created by Alex.M on 07.07.2022.
-//
-//  Bundle扩展 - 提供当前Bundle的访问方法
-//
-
 import Foundation
 
 /// Bundle令牌类 - 用于获取当前Bundle的私有辅助类

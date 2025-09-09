@@ -1,7 +1,3 @@
-//
-//  Created by Aman Kumar on 26/08/25.
-//
-
 import SwiftUI
 
 /// A view that asynchronously loads and displays an image using native SwiftUI AsyncImage.

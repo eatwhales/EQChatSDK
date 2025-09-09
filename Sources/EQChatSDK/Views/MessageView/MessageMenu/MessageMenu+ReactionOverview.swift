@@ -1,8 +1,3 @@
-//
-//  MessageMenu+ReactionOverview.swift
-//  Chat
-//
-
 import SwiftUI
 
 struct ReactionOverview: View {

@@ -1,8 +1,3 @@
-//
-//  ReactionSelectionView.swift
-//  Chat
-//
-
 import SwiftUI
 
 struct ReactionSelectionView: View {

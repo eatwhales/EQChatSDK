@@ -1,12 +1,3 @@
-//
-//  View+.swift
-//
-//
-//  Created by Alisa Mylnikova on 09.03.2023.
-//
-//  视图扩展 - 提供常用的视图修饰符和工具方法
-//
-
 import SwiftUI
 
 /// 视图扩展 - 添加常用的视图修饰符

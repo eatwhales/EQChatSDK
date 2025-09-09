@@ -1,8 +1,3 @@
-//
-//  MessageMenu+Action.swift
-//  Chat
-//
-
 import SwiftUI
 
 public protocol MessageMenuAction: Equatable, CaseIterable {

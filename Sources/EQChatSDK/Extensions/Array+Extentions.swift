@@ -1,12 +1,3 @@
-//
-//  Array+Extensions.swift
-//  
-//
-//  Created by Alisa Mylnikova on 25.12.2023.
-//
-//  数组扩展 - 为可标识元素数组提供工具方法
-//
-
 import Foundation
 
 /// 数组扩展 - 为包含可标识元素的数组添加实用方法

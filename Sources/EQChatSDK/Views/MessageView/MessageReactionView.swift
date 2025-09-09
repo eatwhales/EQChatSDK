@@ -1,8 +1,3 @@
-//
-//  MessageView+Reaction.swift
-//  Chat
-//
-
 import SwiftUI
 
 extension MessageView {

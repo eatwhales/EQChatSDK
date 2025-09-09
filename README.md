@@ -39,7 +39,7 @@ pod install
 在Xcode中，选择 `File` > `Add Package Dependencies`，然后输入：
 
 ```
-https://github.com/eatwhales/EQChatSDK.git.git
+https://github.com/yourusername/EQChatSDK.git
 ```
 
 ## 快速开始
@@ -206,7 +206,7 @@ ChatView(
 
 ## 示例项目
 
-查看完整的示例项目：[ChatDemo](https://github.com/eatwhales/ChatDemo)
+查看完整的示例项目：[ChatDemo](https://github.com/yourusername/ChatDemo)
 
 ## 系统要求
 

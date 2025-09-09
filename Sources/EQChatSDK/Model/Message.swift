@@ -1,11 +1,3 @@
-//
-//  Message.swift
-//  Chat
-//
-//  Created by Alisa Mylnikova on 20.04.2022.
-//  聊天消息模型 - 定义聊天消息的核心数据结构
-//
-
 import SwiftUI
 
 /// 聊天消息结构体 - 表示单个聊天消息的完整信息

@@ -1,13 +1,3 @@
-//
-//  MessageView.swift
-//  Chat
-//
-//  Created by Alex.M on 23.05.2022.
-//  Modified by Alex.M on 09.09.2025.
-//
-//  消息视图 - 显示单个消息的界面组件，包括文本、附件、反应等
-//
-
 import SwiftUI
 
 /// 消息视图组件 - 用于显示单个聊天消息

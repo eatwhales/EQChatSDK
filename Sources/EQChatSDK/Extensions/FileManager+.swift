@@ -1,10 +1,3 @@
-//
-//  FileManager+.swift
-//  
-//
-//  Created by Alisa Mylnikova on 10.03.2023.
-//
-
 import Foundation
 
 extension FileManager {

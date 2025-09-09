@@ -1,12 +1,3 @@
-//
-//  View+StatusBar.swift
-//  
-//
-//  Created by Alisa Mylnikova on 02.06.2023.
-//
-//  状态栏点击检测扩展 - 提供状态栏点击事件监听功能
-//
-
 import SwiftUI
 import UIKit
 

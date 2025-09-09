@@ -1,13 +1,3 @@
-//
-//  InputViewModel.swift
-//  Chat
-//
-//  Created by Alex.M on 20.06.2022.
-//  Modified by Alex.M on 09.09.2025.
-//
-//  输入视图模型 - 管理输入框的状态和操作逻辑
-//
-
 import Foundation
 import Combine
 
