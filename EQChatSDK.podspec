@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
   spec.author       = { "morning" => "morning.yann@gmail.com" }
   
   # 源码信息
-  spec.source       = { :git => "https://github.com/eatwhales/EQChatSDK.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/eatwhales/EQChatSDK.git", :tag => "v#{spec.version}" }
   spec.source_files = "Sources/EQChatSDK/**/*.swift"
   
   # 平台支持
