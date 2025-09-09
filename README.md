@@ -36,13 +36,13 @@ pod install
 
 ### Swift Package Manager
 
-在Xcode中，选择 `File` > `Add Package Dependencies`，然后输入你的仓库URL：
+在Xcode中，选择 `File` > `Add Package Dependencies`，然后输入仓库URL：
 
 ```
-https://github.com/YOUR_USERNAME/EQChatSDK.git
+https://github.com/[你的GitHub用户名]/EQChatSDK.git
 ```
 
-> 请将 `YOUR_USERNAME` 替换为你的实际GitHub用户名
+> **注意**: 请将 `[你的GitHub用户名]` 替换为你实际的GitHub用户名
 
 ## 快速开始
 
