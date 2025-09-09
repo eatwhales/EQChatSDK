@@ -6,7 +6,7 @@
 Pod::Spec.new do |spec|
   # 基本信息
   spec.name         = "EQChatSDK"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.1"
   spec.summary      = "Modern SwiftUI Chat SDK for iOS"
   spec.description  = <<-DESC
                       EQChatSDK是一个基于SwiftUI的现代化聊天SDK，提供完整的聊天界面组件。
