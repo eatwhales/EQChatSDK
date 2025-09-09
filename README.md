@@ -39,10 +39,8 @@ pod install
 在Xcode中，选择 `File` > `Add Package Dependencies`，然后输入仓库URL：
 
 ```
-https://github.com/[你的GitHub用户名]/EQChatSDK.git
+https://github.com/eatwhales/EQChatSDK.git
 ```
-
-> **注意**: 请将 `[你的GitHub用户名]` 替换为你实际的GitHub用户名
 
 ## 快速开始
 
