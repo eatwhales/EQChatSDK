@@ -1,0 +1,264 @@
+name: CI/CD Pipeline
+
+# 触发条件
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+# 环境变量
+env:
+  DEVELOPER_DIR: /Applications/Xcode.app/Contents/Developer
+
+jobs:
+  # 代码质量检查
+  lint:
+    name: Code Linting
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout代码
+      uses: actions/checkout@v4
+      
+    - name: 设置Swift环境
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: "5.9"
+        
+    - name: SwiftLint检查
+      run: |
+        if which swiftlint >/dev/null; then
+          swiftlint --strict
+        else
+          echo "SwiftLint未安装，跳过代码检查"
+        fi
+
+  # 构建测试
+  build-test:
+    name: Build and Test
+    runs-on: macos-latest
+    needs: lint
+    
+    strategy:
+      matrix:
+        destination:
+          - "platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0"
+          - "platform=iOS Simulator,name=iPhone 14,OS=16.4"
+    
+    steps:
+    - name: Checkout代码
+      uses: actions/checkout@v4
+      
+    - name: 选择Xcode版本
+      run: sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+      
+    - name: 显示Xcode版本
+      run: xcodebuild -version
+      
+    - name: 构建SDK
+      run: |
+        xcodebuild clean build \
+          -scheme EQChatSDK \
+          -destination "${{ matrix.destination }}" \
+          -configuration Release \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+    
+    - name: 运行单元测试
+      run: |
+        xcodebuild test \
+          -scheme EQChatSDK \
+          -destination "${{ matrix.destination }}" \
+          -configuration Debug \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+
+  # Swift Package Manager验证
+  spm-validation:
+    name: SPM Validation
+    runs-on: macos-latest
+    needs: lint
+    
+    steps:
+    - name: Checkout代码
+      uses: actions/checkout@v4
+      
+    - name: 验证Swift Package
+      run: swift build
+      
+    - name: 运行Swift Package测试
+      run: swift test
+
+  # CocoaPods验证
+  cocoapods-validation:
+    name: CocoaPods Validation
+    runs-on: macos-latest
+    needs: lint
+    
+    steps:
+    - name: Checkout代码
+      uses: actions/checkout@v4
+      
+    - name: 安装CocoaPods
+      run: |
+        sudo gem install cocoapods
+        pod --version
+        
+    - name: 验证Podspec
+      run: |
+        pod lib lint EQChatSDK.podspec \
+          --allow-warnings \
+          --skip-import-validation \
+          --verbose
+
+  # 文档生成
+  documentation:
+    name: Generate Documentation
+    runs-on: macos-latest
+    needs: [build-test]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout代码
+      uses: actions/checkout@v4
+      
+    - name: 安装Swift-DocC
+      run: |
+        if ! which docc >/dev/null; then
+          echo "Swift-DocC未安装，跳过文档生成"
+          exit 0
+        fi
+        
+    - name: 生成文档
+      run: |
+        swift package generate-documentation \
+          --target EQChatSDK \
+          --output-path ./docs
+        
+    - name: 部署到GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: success()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+
+  # 发布到CocoaPods
+  cocoapods-release:
+    name: Release to CocoaPods
+    runs-on: macos-latest
+    needs: [build-test, cocoapods-validation]
+    if: github.event_name == 'release'
+    
+    steps:
+    - name: Checkout代码
+      uses: actions/checkout@v4
+      
+    - name: 安装CocoaPods
+      run: |
+        sudo gem install cocoapods
+        pod --version
+        
+    - name: 发布到CocoaPods Trunk
+      env:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+      run: |
+        if [ -n "$COCOAPODS_TRUNK_TOKEN" ]; then
+          pod trunk push EQChatSDK.podspec \
+            --allow-warnings \
+            --skip-import-validation
+        else
+          echo "CocoaPods Trunk Token未配置，跳过发布"
+        fi
+
+  # 性能测试
+  performance-test:
+    name: Performance Testing
+    runs-on: macos-latest
+    needs: [build-test]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout代码
+      uses: actions/checkout@v4
+      
+    - name: 运行性能测试
+      run: |
+        xcodebuild test \
+          -scheme EQChatSDK \
+          -destination "platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0" \
+          -configuration Release \
+          -testPlan PerformanceTests \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+
+  # 安全扫描
+  security-scan:
+    name: Security Scan
+    runs-on: macos-latest
+    needs: lint
+    
+    steps:
+    - name: Checkout代码
+      uses: actions/checkout@v4
+      
+    - name: 运行安全扫描
+      run: |
+        # 检查敏感信息
+        if grep -r "API_KEY\|SECRET\|PASSWORD" Sources/ --include="*.swift"; then
+          echo "⚠️ 发现可能的敏感信息泄露"
+          exit 1
+        fi
+        
+        # 检查硬编码URL
+        if grep -r "http://" Sources/ --include="*.swift"; then
+          echo "⚠️ 发现HTTP链接，建议使用HTTPS"
+        fi
+        
+        echo "✅ 安全扫描通过"
+
+  # 代码覆盖率
+  code-coverage:
+    name: Code Coverage
+    runs-on: macos-latest
+    needs: [build-test]
+    
+    steps:
+    - name: Checkout代码
+      uses: actions/checkout@v4
+      
+    - name: 生成代码覆盖率报告
+      run: |
+        xcodebuild test \
+          -scheme EQChatSDK \
+          -destination "platform=iOS Simulator,name=iPhone 15 Pro,OS=17.0" \
+          -configuration Debug \
+          -enableCodeCoverage YES \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+        
+    - name: 上传覆盖率到Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: false
+
+  # 通知
+  notify:
+    name: Notification
+    runs-on: macos-latest
+    needs: [build-test, cocoapods-validation, spm-validation]
+    if: always()
+    
+    steps:
+    - name: 发送通知
+      run: |
+        if [ "${{ needs.build-test.result }}" == "success" ] && 
+           [ "${{ needs.cocoapods-validation.result }}" == "success" ] && 
+           [ "${{ needs.spm-validation.result }}" == "success" ]; then
+          echo "✅ 所有检查通过！"
+        else
+          echo "❌ 部分检查失败，请查看详细日志"
+        fi
